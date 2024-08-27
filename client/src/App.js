@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Deployment Testing for a React-Flask Application of {data.name} , {data.state}</p>
+        <p>Deployment Testing for a SensingLocalBilling Application of {data.name} , {data.state}</p>
       </header>
     </div>
   );
