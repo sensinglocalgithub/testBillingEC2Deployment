@@ -4,13 +4,16 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-@app.route('/api/data')
+@app.route('/api/data', methods=['GET'])
 @cross_origin(origin='*')
 def get_data():
     # Define your data
     data = {
-        'name': 'Sensing Local',
-        'state': 'Bangalore'
+        'fid': '1',
+        'issue_type': 'B-Construction debris',
+        'category2': 'Waste',
+        'category1': 'Physical Barriers',
+        'type': 'point'
     }
     # Return JSON response
     return jsonify(data)

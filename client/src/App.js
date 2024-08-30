@@ -31,7 +31,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Deployment Testing for a SensingLocalBilling Application of {data.name} , {data.state}</p>
+        <h1>Issues</h1>
+        <p>FID: {data.fid}</p>
+        <p>Issue Type: {data.issue_type}</p>
+        <p>Category 2: {data.category2}</p>
+        <p>Category 1: {data.category1}</p>
+        <p>Type: {data.type}</p>
       </header>
     </div>
   );
