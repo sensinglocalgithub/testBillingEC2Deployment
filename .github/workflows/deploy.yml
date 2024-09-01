@@ -64,7 +64,7 @@ jobs:
           # SSH into the server and perform actions
           ssh -i ~/.ssh/id_rsa $USERNAME@$SERVER_IP << 'EOF'
             # Navigate to Flask app directory and restart the service
-            # cd /home/ec2-user/testBillingEC2Deployment/server/
+            cd /home/ec2-user/testBillingEC2Deployment
             git pull origin main 
             sudo systemctl restart testBillingEC2Deployment
 
