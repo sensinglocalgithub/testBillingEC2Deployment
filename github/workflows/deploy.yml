@@ -1,0 +1,72 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        working-directory: ./server
+        run: |
+          pip install -r requirements.txt
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Node.js dependencies
+        working-directory: ./client
+        run: |
+          npm install
+
+      - name: Build React app
+        working-directory: ./client
+        run: |
+          npm run build
+
+      - name: Print secrets
+        run: |
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY}}"
+          echo "SERVER_IP=${{ secrets.SERVER_IP}}"
+          echo "USERNAME=${{ secrets.USERNAME}}"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+          SERVER_IP: ${{ secrets.SERVER_IP}}
+          USERNAME: ${{ secrets.USERNAME}}
+
+      - name: Deploy to EC2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+          SERVER_IP: ${{ secrets.SERVER_IP}}
+          USERNAME: ${{ secrets.USERNAME}}
+        run: |
+          # Transfer React build files
+          scp -i $SSH_PRIVATE_KEY -r ./client/build/$USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/build/
+
+          # Transfer Flask application code
+          scp -i $SSH_PRIVATE_KEY -r ./server/$USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/server/
+
+          # SSH into the server and perform actions
+          ssh -i $SSH_PRIVATE_KEY $USERNAME@$SERVER_IP << 'EOF'
+            # Navigate to Flask app directory and restart the service
+            cd /home/ec2-user/testBillingEC2Deployment/client/server/
+            git pull origin main 
+            sudo systemctl restart testBillingEC2Deployment
+
+            # Ensure React build files are served by Nginx
+            sudo systemctl reload nginx
+          EOF
