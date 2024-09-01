@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Deploying Sensing Local Billing Application
 
 on:
   push:
