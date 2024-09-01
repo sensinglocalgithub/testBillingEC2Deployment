@@ -48,12 +48,12 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP}}
           USERNAME: ${{ secrets.USERNAME}}
 
-      - name: Set up SSH
+      # Set up the SSH key
+      - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
-        env:
-          SERVER_IP: ${{ secrets.SERVER_IP }}
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
       - name: Deploy to EC2
         env:
@@ -62,13 +62,13 @@ jobs:
           USERNAME: ${{ secrets.USERNAME}}
         run: |
           # Transfer React build files
-          scp -i $SSH_PRIVATE_KEY -r ./client/build/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/build/
+          scp -i ~/.ssh/id_rsa -r ./client/build/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/build/
 
           # Transfer Flask application code
-          scp -i $SSH_PRIVATE_KEY -r ./server/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/server/
+          scp -i ~/.ssh/id_rsa -r ./server/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/server/
 
           # SSH into the server and perform actions
-          ssh -i $SSH_PRIVATE_KEY $USERNAME@$SERVER_IP << 'EOF'
+          ssh -i ~/.ssh/id_rsa $USERNAME@$SERVER_IP << 'EOF'
             # Navigate to Flask app directory and restart the service
             cd /home/ec2-user/testBillingEC2Deployment/client/server/
             git pull origin main 
