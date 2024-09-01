@@ -32,7 +32,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Issues</h1>
-        <p>FID: {data.fid}</p>
+        <p>FID-Test: {data.fid}</p>
         <p>Issue Type: {data.issue_type}</p>
         <p>Category 2: {data.category2}</p>
         <p>Category 1: {data.category1}</p>
