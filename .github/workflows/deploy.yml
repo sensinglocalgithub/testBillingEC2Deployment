@@ -55,10 +55,10 @@ jobs:
           USERNAME: ${{ secrets.USERNAME}}
         run: |
           # Transfer React build files
-          scp -i $SSH_PRIVATE_KEY -r ./client/build/$USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/build/
+          scp -i $SSH_PRIVATE_KEY -r ./client/build/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/build/
 
           # Transfer Flask application code
-          scp -i $SSH_PRIVATE_KEY -r ./server/$USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/server/
+          scp -i $SSH_PRIVATE_KEY -r ./server/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/server/
 
           # SSH into the server and perform actions
           ssh -i $SSH_PRIVATE_KEY $USERNAME@$SERVER_IP << 'EOF'
