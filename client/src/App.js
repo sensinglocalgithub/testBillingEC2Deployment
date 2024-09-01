@@ -15,6 +15,7 @@ function App() {
         }
         const result = await response.json();
         setData(result);
+        console.log(result);
       } catch (error) {
         setError(error);
       }finally {
@@ -32,7 +33,6 @@ function App() {
       <header className="App-header">
 //        <img src={logo} className="App-logo" alt="logo" />
         <h1>Issues</h1>
-        {console.log(data)}
         <p>FID-Test: {data.fid}</p>
         <p>Issue Type: {data.issue_type}</p>
         <p>Category 2: {data.category2}</p>

@@ -12,9 +12,9 @@ def get_data():
         'fid': '1',
         'issue_type': 'B-Construction debris',
         'category2': 'Waste',
-        'category1': 'Physical Barriers',
-        'type': 'point'
+        'category1': 'Physical Barriers'
     }
+    # 'type': 'point'
     # Return JSON response
     return jsonify(data)
 
