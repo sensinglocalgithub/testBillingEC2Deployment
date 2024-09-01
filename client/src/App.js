@@ -11,7 +11,7 @@ function App() {
       try {
         const response = await fetch('/api/data');
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was');
         }
         const result = await response.json();
         setData(result);
