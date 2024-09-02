@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
@@ -15,9 +15,7 @@ function App() {
         }
         const result = await response.json();
         setData(result);
-        console.log("This is to test the deployment");
         console.log(result);
-        //        <img src={logo} className="App-logo" alt="logo" />
       } catch (error) {
         setError(error);
       }finally {
@@ -33,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+//      <img src={logo} className="App-logo" alt="logo" />
         <h1>Issues</h1>
         <p>FID-Test: {data.fid}</p>
         <p>Issue Type: {data.issue_type}</p>
