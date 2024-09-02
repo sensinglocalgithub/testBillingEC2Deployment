@@ -15,6 +15,7 @@ function App() {
         }
         const result = await response.json();
         setData(result);
+        console.log("This is to test the deployment");
         console.log(result);
         //        <img src={logo} className="App-logo" alt="logo" />
       } catch (error) {

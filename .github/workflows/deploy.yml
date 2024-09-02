@@ -56,7 +56,7 @@ jobs:
           USERNAME: ${{ secrets.USERNAME}}
         run: |
           # Transfer React build files
-          scp -i ~/.ssh/id_rsa -r ./client/build/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/build/
+          scp -i ~/.ssh/id_rsa -r ./client/build/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/client/
 
           # Transfer Flask application code
           scp -i ~/.ssh/id_rsa -r ./server/ $USERNAME@$SERVER_IP:/home/ec2-user/testBillingEC2Deployment/server/
