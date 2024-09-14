@@ -1,45 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import React, { useState, useEffect } from 'react';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavBar from './NavBar';
+import Parameters from './Parameters';
+import BudgetingFramework from './BudgetingFramework';
+import Template from './Template';
 
 function App() {
-   const [data, setData] = useState(null);
-   const [loading, setLoading] = useState(true);
-   const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/data');
-        if (!response.ok) {
-          throw new Error('Network response was not');
-        }
-        const result = await response.json();
-        setData(result);
-        console.log(result);
-      } catch (error) {
-        setError(error);
-      }finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!data) return <div>No data available</div>;
   return (
-    <div className="App">
-      <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-        <h1>Issues</h1>
-        <p>FID-Test: {data.fid}</p>
-        <p>Issue Type: {data.issue_type}</p>
-        <p>Category 2: {data.category2}</p>
-        <p>Category 1: {data.category1}</p>
-        <p>Type: {data.type}</p>
-      </header>
-    </div>
+      <Router>
+        <NavBar />
+        <div className="app-container">
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Template />}></Route>
+              <Route path="/parameters/:templateId" element={<Parameters />}></Route>
+              <Route path="/budgeting-framework/:templateId" element={<BudgetingFramework />}></Route>
+            </Routes>
+          </div>
+        </div>
+      </Router>
   );
 }
 

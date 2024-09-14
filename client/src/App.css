@@ -1,38 +1,201 @@
-.App {
-  text-align: center;
+/* src/App.css */
+.container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* src/components/NavBar.css */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin-right: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
   color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-link:hover {
+  background-color: #555;
+  color: #ddd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Active link styling */
+.active-link {
+  background-color: #007bff; /* Highlight color for the active page */
+  color: white; /* Keep text white on active */
 }
+
+/* src/pages/Template.css */
+.template-container {
+  max-width: 600px; /* Limit the width of the container */
+  margin: 40px auto; /* Center the container on the page */
+  padding: 20px; /* Add some padding inside the container */
+  background-color: #f9f9f9; /* Light background color */
+  border: 1px solid #ddd; /* Subtle border around the container */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+h1 {
+  text-align: center; /* Center the heading */
+  color: #333; /* Dark color for the heading */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.templatelabel {
+  display: block; 
+  margin-bottom: 10px; 
+  font-weight: bold;
+  color: #555; 
+}
+
+.templateselect {
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 20px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  background-color: #fff; 
+  font-size: 16px; 
+}
+
+.view {
+  display: block; 
+  width: 100%; 
+  padding: 12px;
+  background-color: #007bff; 
+  color: white;
+  font-size: 16px; 
+  border: none; 
+  border-radius: 4px;
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+.view:hover {
+  background-color: #0056b3; 
+}
+
+.issue-type-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.issue-type-dropdown {
+  margin-right: 10px;
+  width: 400px; /* Make the dropdown wider */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.issue-type-dropdown:hover .menu-item {
+  overflow: visible;
+}
+
+.menu-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  overflow: visible;
+  white-space: normal;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  width: auto;
+  max-width: 500px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.solution-multiselect {
+  margin-left: 180px;
+  width: 420px; /* Adjust width for solution dropdown */
+  border: black;
+}
+
+.add-issue-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.add-issue-dropdown {
+  margin-right: 10px;
+  width: 300px;
+}
+
+.add-issue-button {
+  height: 40px;
+}
+
+/* src/pages/BudgetingFramework.css */
+.solution-accordion {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.solution-accordion select {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.solution-accordion button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.solution-accordion button:hover {
+  background-color: #d32f2f;
+}
+
+.accordion-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accordion-button:hover {
+  background-color: #0056b3;
+}
+
