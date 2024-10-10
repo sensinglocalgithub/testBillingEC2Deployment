@@ -2,7 +2,10 @@ from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 import os
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text
+from dotenv import load_dotenv
+from sqlalchemy import text 
+# Load environment variables from dbconnection_local.env
+load_dotenv('dbconnection_local.env')
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -42,4 +45,4 @@ def index():
         return f"Error connecting to the database: {e}"
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5100)
