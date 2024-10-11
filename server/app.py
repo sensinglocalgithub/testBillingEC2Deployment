@@ -39,7 +39,7 @@ def index():
             result = connection.execute(text('SELECT 1'))
             return "Database connected successfully!" if result.fetchone() else "Connection failed!"
     except Exception as e:
-        return f"Error connecting to the database: {e}"
+        return f"Error connecting to the databas: {e}"
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
