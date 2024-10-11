@@ -42,14 +42,6 @@ jobs:
         run: |
           npm run build
 
-      # Print environment variables (sensitive values should not be displayed)
-      - name: Print environment variables
-        run: |
-          echo "DB_HOST=${{ secrets.DB_HOST }}"
-          echo "DB_USER=${{ secrets.DB_USER }}"
-          echo "DB_NAME=${{ secrets.DB_NAME }}"
-          echo "DB_PORT=${{ secrets.DB_PORT }}"
-
       # Set up the SSH key
       - name: Set up SSH key
         run: |
