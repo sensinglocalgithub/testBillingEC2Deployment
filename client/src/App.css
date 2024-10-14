@@ -46,6 +46,11 @@ li {
 }
 
 /* src/pages/Template.css */
+
+.template-container-parent {
+  display: flex;
+}
+
 .template-container {
   max-width: 600px; /* Limit the width of the container */
   margin: 40px auto; /* Center the container on the page */
@@ -54,6 +59,8 @@ li {
   border: 1px solid #ddd; /* Subtle border around the container */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  flex: 1;
+  margin: 15px;
 }
 
 h1 {
@@ -156,46 +163,137 @@ h1 {
   height: 40px;
 }
 
-/* src/pages/BudgetingFramework.css */
-.solution-accordion {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+/* BudgetingFramework */
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+  margin: 20px auto;    /* Centers the card */
+  padding: 20px;
+  width: 80%;           /* Limits the card width */
+  transition: max-height 0.3s ease-in-out;
+}
+
+.card-header {
+  background-color: #000;  /* Black background */
+  color: #fff;             /* White text */
+  padding: 15px;
+  border-radius: 8px 8px 0 0; /* Rounded corners on top */
+  cursor: pointer;
   display: flex;
-  align-items: center;
+  flex-direction: column;    /* Stacks items vertically */
 }
 
-.solution-accordion select {
-  flex: 1;
-  margin-right: 10px;
-  padding: 5px;
+.card-header select {
+  margin-top: 10px;        /* Adds space between "Select Solution" and the dropdown */
+  padding: 10px;
+  font-size: 16px;         /* Larger font */
+  width: 100%;             /* Full width dropdown */
+  height: 40px;            /* Taller dropdown */
 }
 
-.solution-accordion button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
+.card-body {
+  background-color: #f0f0f0;  /* Greyish background */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;   /* Stacks items in the card body */
+  gap: 15px;
+  border-radius: 0 0 8px 8px; /* Rounded corners on bottom */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  margin-bottom: 20px;
 }
 
-.solution-accordion button:hover {
-  background-color: #d32f2f;
+.card-body.expanded {
+  max-height: 3000px;  /* Expands to fit content */
+  overflow: visible;
 }
 
-.accordion-button {
+.qualifier-row {
+  display: flex;
+  flex-direction: column;   /* Stack the label and select vertically */
+  width: 100%;
   margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-.accordion-button:hover {
-  background-color: #0056b3;
+.qualifier-multichoice label {
+  padding-right: 20px;
 }
+
+.qualifier-multichoice label input {
+  margin-right: 5px;
+}
+
+.qualifier-row-select {
+  font-size: 16px;
+  width: 65%;
+  height: 43px;
+}
+
+.qualifier-value {
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 16px;
+  height: 10px;
+  width: 20%;
+}
+
+.qualifier-options {
+  display: flex;
+}
+
+.application-norms {
+  border: 2px solid black; /* Solid border with color */
+  padding: 20px; /* Add some padding inside the div */
+  border-radius: 5px; /* Optional: rounded corners */
+  margin: 10px 0;
+}
+
+.norms {
+  display: flex;
+  align-items: center; 
+  margin-top: 10px;
+}
+
+.norm-name {
+  flex: 2;
+  margin-right: 10px;
+}
+
+.norm-input {
+  flex: 2;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-solution-button {
+  padding: 10px 15px;
+  background-color: #007bff;   /* Button background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 46%;
+}
+
+.add-solution-button:hover {
+  background-color: #0056b3;  /* Darker blue on hover */
+}
+
+.delete-button {
+  padding: 5px 10px;
+  background-color: #dc3545;   /* Red color for delete */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;  /* Darker red on hover */
+}
+
 
