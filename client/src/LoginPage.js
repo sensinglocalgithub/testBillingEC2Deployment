@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import './App.css';
+import { UserContext } from './UserContext';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
 
   const handleLoginSuccess = (response) => {
     const token = response.credential;
-    localStorage.setItem('t oken', token);
+    localStorage.setItem('token', token);
 
     const decodedUser = jwtDecode(token);
-    console.log('User info:', decodedUser);
+    setUser(decodedUser);
 
     navigate('/');
   };
